@@ -8,7 +8,7 @@ architectures:
 packages:
 - "faketime"
 remotes:
-- "url": "https://github.com/projecthelixcoin/helix-detached-sigs.git"
+- "url": "https://github.com/Crazyhead90/helix-detached-sigs.git"
   "dir": "signature"
 files:
 - "helix-osx-unsigned.tar.gz"

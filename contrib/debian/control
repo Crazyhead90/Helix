@@ -29,21 +29,21 @@ Build-Depends: debhelper,
  dh-systemd
 Standards-Version: 3.9.2
 Homepage: http://www.helix.org
-Vcs-Git: git://github.com/projecthelixcoin/HELIX.git
-Vcs-Browser: http://github.com/projecthelixcoin/HELIX
+Vcs-Git: git://github.com/Crazyhead90/helix.git
+Vcs-Browser: https://github.com/Crazyhead90/helix
 
 Package: helixd
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - daemon
- HELIX is a free open source peer-to-peer electronic cash system that
+ HELIX is a free, open source peer-to-peer electronic cash system that
  is completely decentralized, without the need for a central server or
  trusted parties.  Users hold the crypto keys to their own money and
  transact directly with each other, with the help of a P2P network to
  check for double-spending.
  .
  Full transaction history is stored locally at each client.  This
- requires 10+ GB of space, slowly growing.
+ requires 18.5+ GB of space, slowly growing.
  .
  This package provides the daemon, helixd, and the CLI tool
  helix-cli to interact with the daemon.
@@ -52,13 +52,13 @@ Package: helix-qt
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - Qt GUI
- HELIX is a free open source peer-to-peer electronic cash system that
+ HELIX is a free, open source peer-to-peer electronic cash system that
  is completely decentralized, without the need for a central server or
  trusted parties.  Users hold the crypto keys to their own money and
  transact directly with each other, with the help of a P2P network to
  check for double-spending.
  .
  Full transaction history is stored locally at each client.  This
- requires 10+ GB of space, slowly growing.
+ requires 18.5+ GB of space, slowly growing.
  .
  This package provides Helix-Qt, a GUI for HELIX based on Qt.

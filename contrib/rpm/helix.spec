@@ -24,18 +24,18 @@ URL:		https://helix.org/
 Source0:	https://helix.org/bin/helix-core-%{version}/helix-%{version}.tar.gz
 Source1:	http://download.oracle.com/berkeley-db/db-%{bdbv}.NC.tar.gz
 
-Source10:	https://raw.githubusercontent.com/projecthelixcoin/helix/v%{version}/contrib/debian/examples/helix.conf
+Source10:	https://raw.githubusercontent.com/Crazyhead90/helix/v%{version}/contrib/debian/examples/helix.conf
 
 #man pages
-Source20:	https://raw.githubusercontent.com/projecthelixcoin/helix/v%{version}/doc/man/helixd.1
-Source21:	https://raw.githubusercontent.com/projecthelixcoin/helix/v%{version}/doc/man/helix-cli.1
-Source22:	https://raw.githubusercontent.com/projecthelixcoin/helix/v%{version}/doc/man/helix-qt.1
+Source20:	https://raw.githubusercontent.com/Crazyhead90/helix/v%{version}/doc/man/helixd.1
+Source21:	https://raw.githubusercontent.com/Crazyhead90/helix/v%{version}/doc/man/helix-cli.1
+Source22:	https://raw.githubusercontent.com/Crazyhead90/helix/v%{version}/doc/man/helix-qt.1
 
 #selinux
-Source30:	https://raw.githubusercontent.com/projecthelixcoin/helix/v%{version}/contrib/rpm/helix.te
+Source30:	https://raw.githubusercontent.com/Crazyhead90/helix/v%{version}/contrib/rpm/helix.te
 # Source31 - what about helix-tx and bench_helix ???
-Source31:	https://raw.githubusercontent.com/projecthelixcoin/helix/v%{version}/contrib/rpm/helix.fc
-Source32:	https://raw.githubusercontent.com/projecthelixcoin/helix/v%{version}/contrib/rpm/helix.if
+Source31:	https://raw.githubusercontent.com/Crazyhead90/helix/v%{version}/contrib/rpm/helix.fc
+Source32:	https://raw.githubusercontent.com/Crazyhead90/helix/v%{version}/contrib/rpm/helix.if
 
 Source100:	https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg
 

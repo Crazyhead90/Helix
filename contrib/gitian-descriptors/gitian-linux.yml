@@ -1,5 +1,5 @@
 ---
-name: "helix-linux-1.2"
+name: "helix-linux-4.2"
 enable_cache: true
 distro: "ubuntu"
 suites:
@@ -33,7 +33,7 @@ packages:
 - "ca-certificates"
 - "python3"
 remotes:
-- "url": "https://github.com/projecthelixcoin/helix.git"
+- "url": "https://github.com/Crazyhead90/helix.git"
   "dir": "helix"
 files: []
 script: |

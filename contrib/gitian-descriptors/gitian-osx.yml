@@ -1,4 +1,5 @@
-name: "helix-osx-1.2"
+---
+name: "helix-osx-4.2"
 enable_cache: true
 distro: "ubuntu"
 suites:
@@ -28,7 +29,7 @@ packages:
 - "python3-setuptools"
 - "fonts-tuffy"
 remotes:
-- "url": "https://github.com/projecthelixcoin/helix.git"
+- "url": "https://github.com/Crazyhead90/helix.git"
   "dir": "helix"
 files:
 - "MacOSX10.11.sdk.tar.gz"
