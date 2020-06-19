@@ -106,7 +106,7 @@ def setup_repos():
     if not os.path.isdir('gitian.sigs'):
         subprocess.check_call(['git', 'clone', 'https://github.com/Crazyhead90/gitian.sigs.git'])
     if not os.path.isdir('helix-detached-sigs'):
-        subprocess.check_call(['git', 'clone', 'https://github.com/Crazyhead90/helix/helix-detached-sigs.git'])
+        subprocess.check_call(['git', 'clone', 'https://github.com/Crazyhead90/helix-detached-sigs.git'])
     if not os.path.isdir('gitian-builder'):
         subprocess.check_call(['git', 'clone', 'https://github.com/devrandom/gitian-builder.git'])
     if not os.path.isdir('helix'):
