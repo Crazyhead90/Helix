@@ -8,42 +8,36 @@ Build-Depends: debhelper,
  automake,
  libtool,
  bash-completion,
+ libboost-system-dev (>> 1.35) | libboost-system1.35-dev,
  libdb4.8++-dev,
- libssl1.0-dev | libssl-dev,
+ libssl-dev,
  pkg-config,
- libevent-dev,
- libgmp-dev,
- libboost-system1.48-dev | libboost-system-dev (>> 1.47),
- libboost-filesystem1.48-dev | libboost-filesystem-dev (>> 1.47),
- libboost-program-options1.48-dev | libboost-program-options-dev (>> 1.47),
- libboost-thread1.48-dev | libboost-thread-dev (>> 1.47),
- libboost-test1.48-dev | libboost-test-dev (>> 1.47),
- libboost-chrono1.48-dev | libboost-chrono-dev (>> 1.47),
- libminiupnpc8-dev | libminiupnpc-dev,
- xvfb,
- qtbase5-dev, qttools5-dev-tools, qttools5-dev,
+ libminiupnpc8-dev,
+ libboost-filesystem-dev (>> 1.35) | libboost-filesystem1.35-dev,
+ libboost-program-options-dev (>> 1.35) | libboost-program-options1.35-dev,
+ libboost-thread-dev (>> 1.35) | libboost-thread1.35-dev,
+ libboost-test-dev (>> 1.35) | libboost-test1.35-dev,
+ qt4-qmake,
+ libqt4-dev,
  libqrencode-dev,
- libprotobuf-dev, protobuf-compiler,
- python,
- libzmq3-dev,
- dh-systemd
+ libprotobuf-dev, protobuf-compiler
 Standards-Version: 3.9.2
 Homepage: http://www.helix.org
-Vcs-Git: git://github.com/Crazyhead90/helix.git
-Vcs-Browser: https://github.com/Crazyhead90/helix
+Vcs-Git: git://github.com/projecthelixcoin/HELIX.git
+Vcs-Browser: http://github.com/projecthelixcoin/HELIX
 
 Package: helixd
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - daemon
- HELIX is a free, open source peer-to-peer electronic cash system that
+ HELIX is a free open source peer-to-peer electronic cash system that
  is completely decentralized, without the need for a central server or
  trusted parties.  Users hold the crypto keys to their own money and
  transact directly with each other, with the help of a P2P network to
  check for double-spending.
  .
  Full transaction history is stored locally at each client.  This
- requires 18.5+ GB of space, slowly growing.
+ requires 10+ GB of space, slowly growing.
  .
  This package provides the daemon, helixd, and the CLI tool
  helix-cli to interact with the daemon.
@@ -52,13 +46,13 @@ Package: helix-qt
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - Qt GUI
- HELIX is a free, open source peer-to-peer electronic cash system that
+ HELIX is a free open source peer-to-peer electronic cash system that
  is completely decentralized, without the need for a central server or
  trusted parties.  Users hold the crypto keys to their own money and
  transact directly with each other, with the help of a P2P network to
  check for double-spending.
  .
  Full transaction history is stored locally at each client.  This
- requires 18.5+ GB of space, slowly growing.
+ requires 10+ GB of space, slowly growing.
  .
  This package provides Helix-Qt, a GUI for HELIX based on Qt.

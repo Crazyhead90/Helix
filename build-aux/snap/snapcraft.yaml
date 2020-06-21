@@ -1,17 +1,17 @@
 # Copyright (c) 2018-2019 The Ion developers
-# Copyright (c) 2019 The helix developers
+# Copyright (c) 2019 The HELIX developers
 name: helix-core
 base: core18
-version: 4.1.99
-summary:   helix (Private – Instant – Verified – Transaction)
+version: 1.2.4
+summary:   HELIX (Private – Instant – Verified – Transaction)
 description: |
-  helix is an MIT licensed,
+  HELIX is an MIT licensed,
   open source, blockchain-based cryptocurrency with
   ultra fast transactions, low fees, high network decentralization, and
   Zero Knowledge cryptography proofs for industry-leading
   transaction anonymity.
 
-  - [Download](https://helix.org/wp-content/uploads/2018/10/helix-White.pdf) helix White Paper PDF
+  
 grade: devel
 confinement: strict
 apps:
@@ -68,7 +68,7 @@ apps:
     plugs: [home]
 parts:
   helix-core:
-    source: https://github.com/Crazyhead90/helix
+    source: https://github.com/HELIX-Project/HELIX
     source-type: git
     source-tag: master
     plugin: nil
