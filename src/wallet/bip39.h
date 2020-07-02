@@ -21,8 +21,13 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
+<<<<<<< HEAD
 #ifndef HELIX_BIP39_H
 #define HELIX_BIP39_H
+=======
+#ifndef PHORE_BIP39_H
+#define PHORE_BIP39_H
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
 
 #include "allocators.h"
 

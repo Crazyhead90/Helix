@@ -1,5 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin developers
+// Copyright (c) 2012-2013 The PPCoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
 // Copyright (c) 2017-2018 The Phore developers
@@ -476,7 +477,10 @@ void FindNextBlocksToDownload(NodeId nodeid, unsigned int count, std::vector<CBl
         // are not yet downloaded and not in flight to vBlocks. In the mean time, update
         // pindexLastCommonBlock as long as all ancestors are already downloaded.
         for (CBlockIndex* pindex : vToFetch) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
             if (!pindex->IsValid(BLOCK_VALID_TREE)) {
                 // We consider the chain that this peer is on invalid.
                 return;
@@ -1740,7 +1744,7 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
                 hash.ToString(),
                 nFees, ::minRelayTxFee.GetFee(nSize) * 10000);
 
-        
+
         unsigned int scriptVerifyFlags = STANDARD_SCRIPT_VERIFY_FLAGS;
         if (!Params().RequireStandard()) {
             scriptVerifyFlags = GetArg("-promiscuousmempoolflags", scriptVerifyFlags);
@@ -1862,7 +1866,7 @@ bool AcceptableInputs(CTxMemPool& pool, CValidationState& state, const CTransact
             }
         }
     }
-    
+
     // Check for conflicts with in-memory transactions
     if (!tx.IsZerocoinSpend()) {
         LOCK(pool.cs); // protect pool.mapNextTx
@@ -2492,7 +2496,11 @@ bool CheckInputs(const CTransaction& tx, CValidationState& state, const CCoinsVi
                 }
             }
         }
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
         if (cacheFullScriptStore && !pvChecks) {
             AssertLockHeld(cs_main);
             // We executed all of the provided scripts, and were told to
@@ -3275,7 +3283,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 
 
     // delete old entries
-    for (auto it = mapStakeSpent.begin(); it != mapStakeSpent.end();) { 
+    for (auto it = mapStakeSpent.begin(); it != mapStakeSpent.end();) {
         if (it->second < pindex->nHeight - Params().MaxReorganizationDepth()) {
             LogPrint("map", "mapStakeSpent: Erase %s | %u\n", it->first.ToString(), it->second);
             it = mapStakeSpent.erase(it);
@@ -4286,6 +4294,7 @@ bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
         if(!mapProofOfStake.count(hash)) // add to mapProofOfStake
             mapProofOfStake.insert(make_pair(hash, hashProofOfStake));
     }
+
     return true;
 }
 
@@ -4657,7 +4666,7 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
                 if (it == mapStakeSpent.end()) {
                     return false;
                 }
-                if (it->second < pindexPrev->nHeight) { 
+                if (it->second < pindexPrev->nHeight) {
                     return false;
                 }
             }
@@ -6392,7 +6401,11 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
                 }
             }
 
+<<<<<<< HEAD
              for (uint256 hash : vEraseQueue)EraseOrphanTx(hash);
+=======
+            for (uint256 hash : vEraseQueue)EraseOrphanTx(hash);
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
         } else if (tx.IsZerocoinSpend() && AcceptToMemoryPool(mempool, state, tx, true, &fMissingZerocoinInputs, false, ignoreFees)) {
             //Presstab: ZCoin has a bunch of code commented out here. Is this something that should have more going on?
             //Also there is nothing that handles fMissingZerocoinInputs. Does there need to be?

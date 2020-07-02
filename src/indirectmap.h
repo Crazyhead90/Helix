@@ -1,5 +1,9 @@
 // Copyright (c) 2016 The Bitcoin Core developers
+<<<<<<< HEAD
 // Copyright (c) 2019 The Phore Developers
+=======
+// Copyright (c) 2019 The Helix Developers
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 

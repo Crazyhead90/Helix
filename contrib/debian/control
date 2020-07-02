@@ -1,8 +1,8 @@
 Source: helix
 Section: utils
 Priority: optional
-Maintainer: Fuzzbawls <fuzzbawls@gmail.com>
-Uploaders: Fuzzbawls <fuzzbawls@gmail.com>
+Maintainer: nathansenn <nathan.senn90@gmail.com>
+Uploaders: Fuzzbawls <nathan.senn90@gmail.com>
 Build-Depends: debhelper,
  devscripts,
  automake,

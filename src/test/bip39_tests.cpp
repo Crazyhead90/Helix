@@ -66,4 +66,8 @@ BOOST_AUTO_TEST_CASE(bip39_vectors)
         }
         }
 
+<<<<<<< HEAD
 BOOST_AUTO_TEST_SUITE_END()
+=======
+BOOST_AUTO_TEST_SUITE_END()
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9

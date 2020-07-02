@@ -152,14 +152,23 @@ private:
 public:
     CMutexLock(Mutex& mutexIn, const char* pszName, const char* pszFile, int nLine, bool fTry = false) EXCLUSIVE_LOCK_FUNCTION(mutexIn) : lock(mutexIn, boost::defer_lock)
     {
+<<<<<<< HEAD
         BeforeAcquireLock(this, &mutexIn, pszName, pszFile, nLine, fTry);
+=======
+		BeforeAcquireLock(this, &mutexIn, pszName, pszFile, nLine, fTry);
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
 
         if (fTry)
             TryEnter(pszName, pszFile, nLine);
         else
             Enter(pszName, pszFile, nLine);
+<<<<<<< HEAD
 
             AfterAcquireLock(this, lock.owns_lock());
+=======
+		
+		AfterAcquireLock(this, lock.owns_lock());
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
     }
 
     CMutexLock(Mutex* pmutexIn, const char* pszName, const char* pszFile, int nLine, bool fTry = false) EXCLUSIVE_LOCK_FUNCTION(pmutexIn)
@@ -167,6 +176,8 @@ public:
         if (!pmutexIn) return;
         
         BeforeAcquireLock(this, pmutexIn, pszName, pszFile, nLine, fTry);
+
+		BeforeAcquireLock(this, pmutexIn, pszName, pszFile, nLine, fTry);
 
         lock = boost::unique_lock<Mutex>(*pmutexIn, boost::defer_lock);
         if (fTry)
@@ -181,7 +192,11 @@ public:
     {
         if (lock.owns_lock())
             LeaveCritical();
+<<<<<<< HEAD
             		
+=======
+		
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
 		AfterReleaseLock(this, lock.owns_lock());
     }
 
@@ -212,7 +227,7 @@ typedef CMutexLock<CCriticalSection> CCriticalBlock;
         LeaveCritical();           \
     }
 
-class CSemaphore
+class CSemahelix
 {
 private:
     boost::condition_variable condition;
@@ -220,7 +235,7 @@ private:
     int value;
 
 public:
-    CSemaphore(int init) : value(init) {}
+    CSemahelix(int init) : value(init) {}
 
     void wait()
     {
@@ -250,11 +265,11 @@ public:
     }
 };
 
-/** RAII-style Semaphore lock */
-class CSemaphoreGrant
+/** RAII-style Semahelix lock */
+class CSemahelixGrant
 {
 private:
-    CSemaphore* sem;
+    CSemahelix* sem;
     bool fHaveGrant;
 
 public:
@@ -281,7 +296,7 @@ public:
         return fHaveGrant;
     }
 
-    void MoveTo(CSemaphoreGrant& grant)
+    void MoveTo(CSemahelixGrant& grant)
     {
         grant.Release();
         grant.sem = sem;
@@ -290,9 +305,9 @@ public:
         fHaveGrant = false;
     }
 
-    CSemaphoreGrant() : sem(NULL), fHaveGrant(false) {}
+    CSemahelixGrant() : sem(NULL), fHaveGrant(false) {}
 
-    CSemaphoreGrant(CSemaphore& sema, bool fTry = false) : sem(&sema), fHaveGrant(false)
+    CSemahelixGrant(CSemahelix& sema, bool fTry = false) : sem(&sema), fHaveGrant(false)
     {
         if (fTry)
             TryAcquire();
@@ -300,7 +315,7 @@ public:
             Acquire();
     }
 
-    ~CSemaphoreGrant()
+    ~CSemahelixGrant()
     {
         Release();
     }

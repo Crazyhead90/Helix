@@ -64,14 +64,14 @@ using namespace std;
 
 namespace
 {
-const int MAX_OUTBOUND_CONNECTIONS = 16;
+    const int MAX_OUTBOUND_CONNECTIONS = 16;
 
-struct ListenSocket {
-    SOCKET socket;
-    bool whitelisted;
+    struct ListenSocket {
+        SOCKET socket;
+        bool whitelisted;
 
-    ListenSocket(SOCKET socket, bool whitelisted) : socket(socket), whitelisted(whitelisted) {}
-};
+        ListenSocket(SOCKET socket, bool whitelisted) : socket(socket), whitelisted(whitelisted) {}
+    };
 }
 
 /** Services this node implementation cares about */
@@ -112,7 +112,7 @@ CCriticalSection cs_vAddedNodes;
 NodeId nLastNodeId = 0;
 CCriticalSection cs_nLastNodeId;
 
-static CSemaphore* semOutbound = NULL;
+static CSemahelix* semOutbound = NULL;
 boost::condition_variable messageHandlerCondition;
 
 // Signals for message handling
@@ -234,7 +234,7 @@ void AdvertizeLocal(CNode* pnode)
         // tells us that it sees us as in case it has a better idea of our
         // address than we do.
         if (IsPeerAddrLocalGood(pnode) && (!addrLocal.IsRoutable() ||
-                                              GetRand((GetnScore(addrLocal) > LOCAL_MANUAL) ? 8 : 2) == 0)) {
+                                           GetRand((GetnScore(addrLocal) > LOCAL_MANUAL) ? 8 : 2) == 0)) {
             addrLocal.SetIP(pnode->addrLocal);
         }
         if (addrLocal.IsRoutable()) {
@@ -362,8 +362,8 @@ CNode* FindNode(const CSubNet& subNet)
 {
     LOCK(cs_vNodes);
     for (CNode* pnode : vNodes)
-    if (subNet.Match((CNetAddr)pnode->addr))
-        return (pnode);
+        if (subNet.Match((CNetAddr)pnode->addr))
+            return (pnode);
     return NULL;
 }
 
@@ -412,14 +412,14 @@ CNode* ConnectNode(CAddress addrConnect, const char* pszDest, bool obfuScationMa
 
     /// debug print
     LogPrint("net", "trying connection %s lastseen=%.1fhrs\n",
-        pszDest ? pszDest : addrConnect.ToString(),
-        pszDest ? 0.0 : (double)(GetAdjustedTime() - addrConnect.nTime) / 3600.0);
+             pszDest ? pszDest : addrConnect.ToString(),
+             pszDest ? 0.0 : (double)(GetAdjustedTime() - addrConnect.nTime) / 3600.0);
 
     // Connect
     SOCKET hSocket;
     bool proxyConnectionFailed = false;
     if (pszDest ? ConnectSocketByName(addrConnect, hSocket, pszDest, Params().GetDefaultPort(), nConnectTimeout, &proxyConnectionFailed) :
-                  ConnectSocket(addrConnect, hSocket, nConnectTimeout, &proxyConnectionFailed)) {
+        ConnectSocket(addrConnect, hSocket, nConnectTimeout, &proxyConnectionFailed)) {
         if (!IsSelectableSocket(hSocket)) {
             LogPrintf("Cannot create connection: non-selectable socket created (fd >= FD_SETSIZE ?)\n");
             CloseSocket(hSocket);
@@ -491,7 +491,7 @@ void CNode::PushVersion()
     else
         LogPrint("net", "send version message: version %d, blocks=%d, us=%s, peer=%d\n", PROTOCOL_VERSION, nBestHeight, addrMe.ToString(), id);
     PushMessage(NetMsgType::VERSION, PROTOCOL_VERSION, nLocalServices, nTime, addrYou, addrMe,
-        nLocalHostNonce, FormatSubVersion(CLIENT_NAME, CLIENT_VERSION, std::vector<string>()), nBestHeight, true);
+                nLocalHostNonce, FormatSubVersion(CLIENT_NAME, CLIENT_VERSION, std::vector<string>()), nBestHeight, true);
 }
 
 
@@ -963,14 +963,14 @@ void ThreadSocketHandler()
                 {
                     TRY_LOCK(pnode->cs_vRecvMsg, lockRecv);
                     if (lockRecv && (pnode->vRecvMsg.empty() || !pnode->vRecvMsg.front().complete() ||
-                                        pnode->GetTotalRecvSize() <= ReceiveFloodSize()))
+                                     pnode->GetTotalRecvSize() <= ReceiveFloodSize()))
                         FD_SET(pnode->hSocket, &fdsetRecv);
                 }
             }
         }
 
         int nSelect = select(have_fds ? hSocketMax + 1 : 0,
-            &fdsetRecv, &fdsetSend, &fdsetError, &timeout);
+                             &fdsetRecv, &fdsetSend, &fdsetError, &timeout);
         boost::this_thread::interruption_point();
 
         if (nSelect == SOCKET_ERROR) {
@@ -1004,8 +1004,13 @@ void ThreadSocketHandler()
                 {
                     LOCK(cs_vNodes);
                     for (CNode* pnode : vNodes)
+<<<<<<< HEAD
                         if (pnode->fInbound)
                             nInbound++;
+=======
+                    if (pnode->fInbound)
+                        nInbound++;
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
                 }
 
                 if (hSocket == INVALID_SOCKET) {
@@ -1042,7 +1047,11 @@ void ThreadSocketHandler()
             LOCK(cs_vNodes);
             vNodesCopy = vNodes;
             for (CNode* pnode : vNodesCopy)
+<<<<<<< HEAD
                 pnode->AddRef();
+=======
+            pnode->AddRef();
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
         }
         for (CNode* pnode : vNodesCopy) {
             boost::this_thread::interruption_point();
@@ -1117,7 +1126,11 @@ void ThreadSocketHandler()
         {
             LOCK(cs_vNodes);
             for (CNode* pnode : vNodesCopy)
+<<<<<<< HEAD
                 pnode->Release();
+=======
+            pnode->Release();
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
         }
     }
 }
@@ -1282,7 +1295,7 @@ void DumpAddresses()
     adb.Write(addrman);
 
     LogPrint("net", "Flushed %d addresses to peers.dat  %dms\n",
-        addrman.size(), GetTimeMillis() - nStart);
+             addrman.size(), GetTimeMillis() - nStart);
 }
 
 void DumpData()
@@ -1302,7 +1315,7 @@ void static ProcessOneShot()
         vOneShots.pop_front();
     }
     CAddress addr;
-    CSemaphoreGrant grant(*semOutbound, true);
+    CSemahelixGrant grant(*semOutbound, true);
     if (grant) {
         if (!OpenNetworkConnection(addr, &grant, strDest.c_str(), true))
             AddOneShot(strDest);
@@ -1333,7 +1346,7 @@ void ThreadOpenConnections()
 
         MilliSleep(500);
 
-        CSemaphoreGrant grant(*semOutbound);
+        CSemahelixGrant grant(*semOutbound);
         boost::this_thread::interruption_point();
 
         // Add seed nodes if DNS seeds are all down (an infrastructure attack?).
@@ -1423,11 +1436,15 @@ void ThreadOpenAddedConnections()
             {
                 LOCK(cs_vAddedNodes);
                 for (string& strAddNode : vAddedNodes)
+<<<<<<< HEAD
                     lAddresses.push_back(strAddNode);
+=======
+                lAddresses.push_back(strAddNode);
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
             }
             for (string& strAddNode : lAddresses) {
                 CAddress addr;
-                CSemaphoreGrant grant(*semOutbound);
+                CSemahelixGrant grant(*semOutbound);
                 OpenNetworkConnection(addr, &grant, strAddNode.c_str());
                 MilliSleep(500);
             }
@@ -1440,7 +1457,11 @@ void ThreadOpenAddedConnections()
         {
             LOCK(cs_vAddedNodes);
             for (string& strAddNode : vAddedNodes)
+<<<<<<< HEAD
                 lAddresses.push_back(strAddNode);
+=======
+            lAddresses.push_back(strAddNode);
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
         }
 
         list<vector<CService> > lservAddressesToAdd(0);
@@ -1451,7 +1472,11 @@ void ThreadOpenAddedConnections()
                 {
                     LOCK(cs_setservAddNodeAddresses);
                     for (CService& serv : vservNode)
+<<<<<<< HEAD
                         setservAddNodeAddresses.insert(serv);
+=======
+                    setservAddNodeAddresses.insert(serv);
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
                 }
             }
         }
@@ -1460,6 +1485,7 @@ void ThreadOpenAddedConnections()
         {
             LOCK(cs_vNodes);
             for (CNode* pnode : vNodes)
+<<<<<<< HEAD
                 for (list<vector<CService> >::iterator it = lservAddressesToAdd.begin(); it != lservAddressesToAdd.end(); it++)
                     for (CService& addrNode : *(it))
                         if (pnode->addr == addrNode) {
@@ -1470,6 +1496,18 @@ void ThreadOpenAddedConnections()
         }
         for (vector<CService>& vserv : lservAddressesToAdd) {
             CSemaphoreGrant grant(*semOutbound);
+=======
+            for (list<vector<CService> >::iterator it = lservAddressesToAdd.begin(); it != lservAddressesToAdd.end(); it++)
+            for (CService& addrNode : *(it))
+            if (pnode->addr == addrNode) {
+                it = lservAddressesToAdd.erase(it);
+                it--;
+                break;
+            }
+        }
+        for (vector<CService>& vserv : lservAddressesToAdd) {
+            CSemahelixGrant grant(*semOutbound);
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
             OpenNetworkConnection(CAddress(vserv[i % vserv.size()]), &grant);
             MilliSleep(500);
         }
@@ -1478,7 +1516,7 @@ void ThreadOpenAddedConnections()
 }
 
 // if successful, this moves the passed grant to the constructed node
-bool OpenNetworkConnection(const CAddress& addrConnect, CSemaphoreGrant* grantOutbound, const char* pszDest, bool fOneShot)
+bool OpenNetworkConnection(const CAddress& addrConnect, CSemahelixGrant* grantOutbound, const char* pszDest, bool fOneShot)
 {
     //
     // Initiate outbound network connection
@@ -1563,7 +1601,11 @@ void ThreadMessageHandler()
         {
             LOCK(cs_vNodes);
             for (CNode* pnode : vNodesCopy)
+<<<<<<< HEAD
                 pnode->Release();
+=======
+            pnode->Release();
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
         }
 
         if (fSleep)
@@ -1619,7 +1661,7 @@ bool BindListenPort(const CService& addrBind, string& strError, bool fWhiteliste
     // and enable it by default or not. Try to enable it, if possible.
     if (addrBind.IsIPv6()) {
 #ifdef IPV6_V6ONLY
-#ifdef WIN32
+        #ifdef WIN32
         setsockopt(hListenSocket, IPPROTO_IPV6, IPV6_V6ONLY, (const char*)&nOne, sizeof(int));
 #else
         setsockopt(hListenSocket, IPPROTO_IPV6, IPV6_V6ONLY, (void*)&nOne, sizeof(int));
@@ -1724,13 +1766,13 @@ void StartNode(boost::thread_group& threadGroup, CScheduler& scheduler)
     CNode::SweepBanned(); //sweap out unused entries
 
     LogPrintf("Loaded %i addresses from peers.dat  %dms\n",
-        addrman.size(), GetTimeMillis() - nStart);
+              addrman.size(), GetTimeMillis() - nStart);
     fAddressesInitialized = true;
 
     if (semOutbound == NULL) {
-        // initialize semaphore
+        // initialize semahelix
         int nMaxOutbound = min(MAX_OUTBOUND_CONNECTIONS, nMaxConnections);
-        semOutbound = new CSemaphore(nMaxOutbound);
+        semOutbound = new CSemahelix(nMaxOutbound);
     }
 
     if (pnodeLocalHost == NULL)
@@ -1791,12 +1833,21 @@ public:
     {
         // Close sockets
         for (CNode* pnode : vNodes)
+<<<<<<< HEAD
             if (pnode->hSocket != INVALID_SOCKET)
                 CloseSocket(pnode->hSocket);
         for (ListenSocket& hListenSocket : vhListenSocket)
             if (hListenSocket.socket != INVALID_SOCKET)
                 if (!CloseSocket(hListenSocket.socket))
                     LogPrintf("CloseSocket(hListenSocket) failed with error %s\n", NetworkErrorString(WSAGetLastError()));
+=======
+        if (pnode->hSocket != INVALID_SOCKET)
+            CloseSocket(pnode->hSocket);
+        for (ListenSocket& hListenSocket : vhListenSocket)
+        if (hListenSocket.socket != INVALID_SOCKET)
+            if (!CloseSocket(hListenSocket.socket))
+                LogPrintf("CloseSocket(hListenSocket) failed with error %s\n", NetworkErrorString(WSAGetLastError()));
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
 
         // clean up some globals (to help leak detection)
         for (CNode* pnode : vNodes)
@@ -1880,7 +1931,11 @@ void RelayInv(CInv& inv)
 {
     LOCK(cs_vNodes);
     for (CNode* pnode : vNodes){
+<<<<<<< HEAD
     		if((pnode->nServices==NODE_BLOOM_WITHOUT_MN) && inv.IsMasterNodeType())continue;
+=======
+        if((pnode->nServices==NODE_BLOOM_WITHOUT_MN) && inv.IsMasterNodeType())continue;
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
         if (pnode->nVersion >= ActiveProtocol())
             pnode->PushInventory(inv);
     }
@@ -1916,28 +1971,28 @@ void CNode::Fuzz(int nChance)
     if (GetRand(nChance) != 0) return;   // Fuzz 1 of every nChance messages
 
     switch (GetRand(3)) {
-    case 0:
-        // xor a random byte with a random value:
-        if (!ssSend.empty()) {
-            CDataStream::size_type pos = GetRand(ssSend.size());
-            ssSend[pos] ^= (unsigned char)(GetRand(256));
-        }
-        break;
-    case 1:
-        // delete a random byte:
-        if (!ssSend.empty()) {
-            CDataStream::size_type pos = GetRand(ssSend.size());
-            ssSend.erase(ssSend.begin() + pos);
-        }
-        break;
-    case 2:
-        // insert a random byte at a random position
+        case 0:
+            // xor a random byte with a random value:
+            if (!ssSend.empty()) {
+                CDataStream::size_type pos = GetRand(ssSend.size());
+                ssSend[pos] ^= (unsigned char)(GetRand(256));
+            }
+            break;
+        case 1:
+            // delete a random byte:
+            if (!ssSend.empty()) {
+                CDataStream::size_type pos = GetRand(ssSend.size());
+                ssSend.erase(ssSend.begin() + pos);
+            }
+            break;
+        case 2:
+            // insert a random byte at a random position
         {
             CDataStream::size_type pos = GetRand(ssSend.size());
             char ch = (char)GetRand(256);
             ssSend.insert(ssSend.begin() + pos, ch);
         }
-        break;
+            break;
     }
     // Chance of more than one change half the time:
     // (more changes exponentially less likely):
@@ -2313,5 +2368,5 @@ void DumpBanlist()
     }
 
     LogPrint("net", "Flushed %d banned node ips/subnets to banlist.dat  %dms\n",
-        banmap.size(), GetTimeMillis() - nStart);
+             banmap.size(), GetTimeMillis() - nStart);
 }

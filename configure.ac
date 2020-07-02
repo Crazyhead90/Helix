@@ -2,7 +2,11 @@ dnl require autoconf 2.60 (AS_ECHO/AS_ECHO_N)
 AC_PREREQ([2.60])
 define(_CLIENT_VERSION_MAJOR, 1)
 define(_CLIENT_VERSION_MINOR, 2)
+<<<<<<< HEAD
 define(_CLIENT_VERSION_REVISION, 4)
+=======
+define(_CLIENT_VERSION_REVISION, 5)
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
 define(_CLIENT_VERSION_BUILD, 0)
 define(_CLIENT_VERSION_IS_RELEASE, true)
 define(_COPYRIGHT_YEAR, 2020)

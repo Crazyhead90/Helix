@@ -7,6 +7,10 @@
 
 #include <stdint.h>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
 #include <boost/test/unit_test.hpp>
 
 extern CWallet* pwalletMain;

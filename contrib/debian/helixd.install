@@ -1,2 +1,6 @@
 usr/local/bin/helixd usr/bin
+<<<<<<< HEAD
 usr/local/bin/helix-cli usr/bin
+=======
+usr/local/bin/helix-cli usr/bin
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9

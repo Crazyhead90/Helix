@@ -1,4 +1,6 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
+// Copyright (c) 2014-2016 The Dash developers
+// Copyright (c) 2016-2019 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -78,15 +80,22 @@ public:
      */
     QList<TransactionRecord> cachedWallet;
     bool hasZcTxes = false;
+<<<<<<< HEAD
 
+=======
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
 
-    /* Query entire wallet anew from core.
+        /* Query entire wallet anew from core.
      */
     void refreshWallet()
     {
         qDebug() << "TransactionTablePriv::refreshWallet";
         cachedWallet.clear();
+<<<<<<< HEAD
        
+=======
+
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
         std::vector<CWalletTx> walletTxes = wallet->getWalletTxs();
 
         // Divide the work between multiple threads to speedup the process if the vector is larger than 4k txes

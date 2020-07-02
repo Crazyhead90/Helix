@@ -603,7 +603,7 @@ void CObfuscationPool::CheckFinalTransaction()
         // sign a message
 
         int64_t sigTime = GetAdjustedTime();
-		std::string strMessage = txNew.GetHash().ToString() + std::to_string(sigTime);
+        std::string strMessage = txNew.GetHash().ToString() + std::to_string(sigTime);
         std::string strError = "";
         std::vector<unsigned char> vchSig;
         CKey key2;

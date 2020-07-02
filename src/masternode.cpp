@@ -10,6 +10,7 @@
 #include "obfuscation.h"
 #include "sync.h"
 #include "util.h"
+#include <boost/lexical_cast.hpp>
 
 // keep track of the scanning errors I've seen
 map<uint256, int> mapSeenMasternodeScanningErrors;
@@ -466,7 +467,11 @@ bool CMasternodeBroadcast::CheckDefaultPort(std::string strService, std::string&
     if(Params().NetworkID() == CBaseChainParams::REGTEST) {
         return true;
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
     CService service = CService(strService);
     int nDefaultPort = Params().GetDefaultPort();
 
@@ -698,7 +703,7 @@ std::string CMasternodeBroadcast::GetOldStrMessage()
     std::string vchPubKey(pubKeyCollateralAddress.begin(), pubKeyCollateralAddress.end());
     std::string vchPubKey2(pubKeyMasternode.begin(), pubKeyMasternode.end());
     strMessage = addr.ToString() + std::to_string(sigTime) + vchPubKey + vchPubKey2 + std::to_string(protocolVersion);
-	
+
     return strMessage;
 }
 
@@ -707,7 +712,7 @@ std:: string CMasternodeBroadcast::GetNewStrMessage()
     std::string strMessage;
 
     strMessage = addr.ToString() + std::to_string(sigTime) + pubKeyCollateralAddress.GetID().ToString() + pubKeyMasternode.GetID().ToString() + std::to_string(protocolVersion);
-	
+
     return strMessage;
 }
 

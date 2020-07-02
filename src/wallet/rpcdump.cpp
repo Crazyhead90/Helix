@@ -473,7 +473,11 @@ UniValue dumpwallet(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
         throw runtime_error(
+<<<<<<< HEAD:src/wallet/rpcdump.cpp
             "dumpwallet \"filename\"\n"
+=======
+                "dumpwallet \"filename\"\n"
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9:src/rpcdump.cpp
                 "\nDumps all wallet keys in a human-readable format.\n" +
                 HelpRequiringPassphrase() + "\n"
 
@@ -481,9 +485,15 @@ UniValue dumpwallet(const UniValue& params, bool fHelp)
                                             "1. \"filename\"    (string, required) The filename\n"
 
                                             "\nExamples:\n" +
+<<<<<<< HEAD:src/wallet/rpcdump.cpp
             HelpExampleCli("dumpwallet", "\"test\"") + HelpExampleRpc("dumpwallet", "\"test\""));
 
 LOCK2(cs_main, pwalletMain->cs_wallet);
+=======
+                HelpExampleCli("dumpwallet", "\"test\"") + HelpExampleRpc("dumpwallet", "\"test\""));
+
+    LOCK2(cs_main, pwalletMain->cs_wallet);
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9:src/rpcdump.cpp
     EnsureWalletIsUnlocked();
     boost::filesystem::path filepath = params[0].get_str().c_str();
     filepath = boost::filesystem::absolute(filepath);

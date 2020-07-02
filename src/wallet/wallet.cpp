@@ -98,7 +98,10 @@ const CWalletTx* CWallet::GetWalletTx(const uint256& hash) const
     return &(it->second);
 }
 
+<<<<<<< HEAD:src/wallet/wallet.cpp
 
+=======
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9:src/wallet.cpp
 std::vector<CWalletTx> CWallet::getWalletTxs()
 {
     LOCK(cs_wallet);
@@ -133,6 +136,7 @@ CPubKey CWallet::GenerateNewKey(uint32_t nAccountIndex, bool fInternal, CWalletD
         // Compressed public keys were introduced in version 0.6.0
         if (fCompressed)
             SetMinVersion(FEATURE_COMPRPUBKEY);
+<<<<<<< HEAD:src/wallet/wallet.cpp
 
         pubkey = secret.GetPubKey();
         assert(secret.VerifyPubKey(pubkey));
@@ -141,6 +145,16 @@ CPubKey CWallet::GenerateNewKey(uint32_t nAccountIndex, bool fInternal, CWalletD
         if (!nTimeFirstKey || nCreationTime < nTimeFirstKey)
             nTimeFirstKey = nCreationTime;
 
+=======
+
+        pubkey = secret.GetPubKey();
+        assert(secret.VerifyPubKey(pubkey));
+        // Create new metadata
+        mapKeyMetadata[pubkey.GetID()] = metadata;
+        if (!nTimeFirstKey || nCreationTime < nTimeFirstKey)
+            nTimeFirstKey = nCreationTime;
+
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9:src/wallet.cpp
         if (!AddKeyPubKeyWithDB(secret, pubkey, walletDB))
             throw std::runtime_error(std::string(__func__) + ": AddKey failed");
     }
@@ -697,7 +711,11 @@ void CWallet::AddToSpends(const uint256& wtxid)
     if (thisTx.IsCoinBase()) // Coinbases don't spend anything!
         return;
 
+<<<<<<< HEAD:src/wallet/wallet.cpp
         for (const CTxIn& txin : thisTx.vin)
+=======
+    for (const CTxIn& txin : thisTx.vin)
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9:src/wallet.cpp
         AddToSpends(txin.prevout, wtxid);
 }
 
@@ -2556,12 +2574,20 @@ bool CWallet::SelectCoinsMinConf(const CAmount& nTargetValue, int nConfMine, int
     coinLowestLarger.second.first = NULL;
     vector<pair<CAmount, pair<const CWalletTx*, unsigned int> > > vValue;
     CAmount nTotalLower = 0;
+    
+	switch(coinSelectStrategy) {
+	case CoinSelectStrategy::random:
+		random_shuffle(vCoins.begin(), vCoins.end(), GetRandInt);
+		break;
 
+<<<<<<< HEAD:src/wallet/wallet.cpp
     switch(coinSelectStrategy) {
 	case CoinSelectStrategy::random:
 		random_shuffle(vCoins.begin(), vCoins.end(), GetRandInt);
 		break;
 
+=======
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9:src/wallet.cpp
 	default:
 		break;
 	}
@@ -2580,7 +2606,11 @@ bool CWallet::SelectCoinsMinConf(const CAmount& nTargetValue, int nConfMine, int
 	default:
 		break;
 	}
+<<<<<<< HEAD:src/wallet/wallet.cpp
     
+=======
+
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9:src/wallet.cpp
     // try to find nondenom first to prevent unneeded spending of mixed coins
     for (unsigned int tryDenom = 0; tryDenom < 2; tryDenom++) {
         if (fDebug) LogPrint("selectcoins", "tryDenom: %d\n", tryDenom);
@@ -2601,13 +2631,22 @@ bool CWallet::SelectCoinsMinConf(const CAmount& nTargetValue, int nConfMine, int
             if (tryDenom == 0 && IsDenominatedAmount(n)) continue; // we don't want denom values on first run
 
             pair<CAmount, pair<const CWalletTx*, unsigned int> > coin = make_pair(n, make_pair(pcoin, i));
-
+            
             bool equalOrGreater = (n == nTargetValue);
             
             if(coinSelectStrategy == CoinSelectStrategy::descentByAmount) {
                 equalOrGreater = (n >= nTargetValue);
             }
 
+<<<<<<< HEAD:src/wallet/wallet.cpp
+            bool equalOrGreater = (n == nTargetValue);
+            
+            if(coinSelectStrategy == CoinSelectStrategy::descentByAmount) {
+                equalOrGreater = (n >= nTargetValue);
+            }
+
+=======
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9:src/wallet.cpp
             if (equalOrGreater) {
                 setCoinsRet.insert(coin.second);
                 nValueRet += coin.first;
@@ -3075,7 +3114,11 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, CAmount> >& vecSend,
     bool useIX,
     CAmount nFeePay)
 {
+<<<<<<< HEAD:src/wallet/wallet.cpp
     ParamForCreateTransaction param = {};
+=======
+	ParamForCreateTransaction param = {};
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9:src/wallet.cpp
 
 	param.coinSelectStrategy = CoinSelectStrategy::random;
 	param.error = ErrorOfCreateTransaction::other;
@@ -3326,7 +3369,11 @@ bool CWallet::CreateTransactionHelper(const std::vector<std::pair<CScript, CAmou
                 // Limit size
                 if (GetTransactionCost(txNew) >= MAX_STANDARD_TX_COST) {
                     strFailReason = _("Transaction too large");
+<<<<<<< HEAD:src/wallet/wallet.cpp
                     param->error = ErrorOfCreateTransaction::transactionSizeTooLarge;
+=======
+					param->error = ErrorOfCreateTransaction::transactionSizeTooLarge;
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9:src/wallet.cpp
                     return false;
                 }
                 unsigned int nBytes = GetVirtualTransactionSize(txNew);
@@ -3411,11 +3458,19 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
         nLastStakeSetUpdate = GetTime();
     }
 
+<<<<<<< HEAD:src/wallet/wallet.cpp
       if (setStakeCoins.empty()) {
         LogPrint("staking", "CreateCoinStake(): listInputs empty\n");
         return false;
     }
     
+=======
+    if (setStakeCoins.empty()) {
+        LogPrint("staking", "CreateCoinStake(): listInputs empty\n");
+        return false;
+    }
+
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9:src/wallet.cpp
     vector<const CWalletTx*> vwtxPrev;
 
     CAmount nCredit = 0;
@@ -3907,12 +3962,21 @@ bool CWallet::NewKeyPool()
         LOCK(cs_wallet);
         CWalletDB walletdb(strWalletFile);
         for (int64_t nIndex : setInternalKeyPool){
+<<<<<<< HEAD:src/wallet/wallet.cpp
             walletdb.ErasePool(nIndex);
         }
         setInternalKeyPool.clear();
         for (int64_t nIndex : setExternalKeyPool){
             walletdb.ErasePool(nIndex);
         }
+=======
+            walletdb.ErasePool(nIndex);
+        }
+        setInternalKeyPool.clear();
+        for (int64_t nIndex : setExternalKeyPool){
+            walletdb.ErasePool(nIndex);
+        }
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9:src/wallet.cpp
         setExternalKeyPool.clear();
 
         for (int64_t nIndex : set_pre_split_keypool) {
@@ -3957,7 +4021,11 @@ bool CWallet::TopUpKeyPool(unsigned int kpSize)
         else
             nTargetSize = max(GetArg("-keypool", 1000), (int64_t)0);
 
+<<<<<<< HEAD:src/wallet/wallet.cpp
          // count amount of available keys (internal, external)
+=======
+        // count amount of available keys (internal, external)
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9:src/wallet.cpp
         // make sure the keypool of external and internal keys fits the user selected target (-keypool)
         int64_t amountExternal = setExternalKeyPool.size();
         int64_t amountInternal = setInternalKeyPool.size();
@@ -4052,7 +4120,11 @@ void CWallet::ReturnKey(int64_t nIndex, bool fInternal)
     // Return to key pool
     {
         LOCK(cs_wallet);
+<<<<<<< HEAD:src/wallet/wallet.cpp
                 if (fInternal) {
+=======
+        if (fInternal) {
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9:src/wallet.cpp
             setInternalKeyPool.insert(nIndex);
         } else if (!set_pre_split_keypool.empty()) {
             set_pre_split_keypool.insert(nIndex);

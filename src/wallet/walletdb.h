@@ -163,7 +163,11 @@ public:
     bool WriteCryptedHDChain(const CHDChain& chain);
     bool WriteHDPubKey(const CHDPubKey& hdPubKey, const CKeyMetadata& keyMeta);
 
+<<<<<<< HEAD:src/wallet/walletdb.h
     
+=======
+
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9:src/walletdb.h
     bool WriteDeterministicMint(const CDeterministicMint& dMint);
     bool ReadDeterministicMint(const uint256& hashPubcoin, CDeterministicMint& dMint);
     bool EraseDeterministicMint(const uint256& hashPubcoin);

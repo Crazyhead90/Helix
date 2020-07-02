@@ -67,7 +67,7 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
 	( 50000, uint256("000000000009cdaeb5cf0ef84355153aa38e942d750e6000d73d04a4ce4e6c9b"))
 	( 75000, uint256("000000000011bc9bfb698c53359f569d92f090b84e814feb96ef00ddf16a0b56"))
 	( 90000, uint256("000000000000e4573d249e86972aebf57ce377d7342d8bbba351c3f331588c4f"))
-	( 90200, uint256("000000000011f7817fb286c514c71f094e1afe391aaa1a915d2631aa2005dd86"))	
+	( 90200, uint256("000000000011f7817fb286c514c71f094e1afe391aaa1a915d2631aa2005dd86"))
 	( 90200, uint256("000000000011f7817fb286c514c71f094e1afe391aaa1a915d2631aa2005dd86"))
 	( 100000, uint256("0fd4901842a3b39ff9dab91afecbf3a9570ad8faf09100a57d539245826b99ca"))
 	( 125000, uint256("1101e508fdf800468630a640b9f928ae21c3dc411bb5606b397bde75b1adaa1f"))
@@ -91,7 +91,7 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
 	( 700000, uint256("159dc1e73e968a793282f686a3408afe41c72c358019ccb9e22711a66fda77b9"))
 	( 750000, uint256("80a663fb9a25eadb265fa6965f2ff7e6e6217dba9e7a7ff16cc389fe3348423f"))
 	( 800000, uint256("a32bc7b377cc193eb438f5577165e793cf79aa517abe5582d801c6917a553e5a"))
-	( 848572, uint256("a06305f5a6434a7837c6c9e540118a0b3aaca1de162a06bbfb3b6b1cf803306a"))	
+	( 848572, uint256("a06305f5a6434a7837c6c9e540118a0b3aaca1de162a06bbfb3b6b1cf803306a"))
 	;
 
 static const Checkpoints::CCheckpointData data = {
@@ -312,7 +312,11 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x3a)(0x80)(0x61)(0xa0).convert_to_container<std::vector<unsigned char> >();
         // Testnet helix BIP32 prvkeys start with 'DRKP'
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x3a)(0x80)(0x58)(0x37).convert_to_container<std::vector<unsigned char> >();
+<<<<<<< HEAD
         // Testnet phore BIP44 coin type is '1' (All coin's testnet default)
+=======
+        // Testnet helix BIP44 coin type is '1' (All coin's testnet default)
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
         nExtCoinType = 1;
 
         bech32_hrp = "tp";
@@ -322,12 +326,12 @@ public:
         fMiningRequiresPeers = true;
         fAllowMinDifficultyBlocks = true;
         fDefaultConsistencyChecks = false;
-        fRequireStandard = false;
+        fRequireStandard = true;
         fMineBlocksOnDemand = false;
         fTestnetToBeDeprecatedFieldRPC = true;
 
         nPoolMaxTransactions = 2;
-        strSporkKey = "04dcf81391f0d56b027add70054ab55e7bc978b925d4a88e572292e4bfe99c132dcbd91ca4fdf7239f6705aa5242ad9d0f81bb6add73bc91ffdcb57e61da2a201a"; 
+        strSporkKey = "04dcf81391f0d56b027add70054ab55e7bc978b925d4a88e572292e4bfe99c132dcbd91ca4fdf7239f6705aa5242ad9d0f81bb6add73bc91ffdcb57e61da2a201a";
         strObfuscationPoolDummyAddress = "";
         nBudgetFeeConfirmations = 3; // Number of confirmations for the finalization fee. We have to make this very short
                                      // here because we only have a 8 block finalization window on testnet

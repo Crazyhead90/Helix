@@ -1,7 +1,9 @@
 // Copyright (c) 2011-2015 The Bitcoin Core developers
 // Copyright (c) 2018 The Phore developers
 // Copyright (c) 2018-2019 The Helix developers
-// Distributed under the MIT software license, see the accompanying
+// Copyright (c) 2018 The Curium developers
+// Copyright (c) 2017-2018 The Bulwark Developers
+// Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "proposaltablemodel.h"
@@ -91,7 +93,10 @@ void budgetToST(CBudgetProposal* pbudgetProposal, UniValue& bObj)
     bObj.push_back(Pair("fValid", pbudgetProposal->fValid));
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
 void ProposalTableModel::setProposalType(const int &type)
 {
     proposalType = type;
@@ -105,7 +110,11 @@ void ProposalTableModel::refreshProposals()
 
     int mnCount = mnodeman.CountEnabled();
     std::vector<CBudgetProposal*> bObj;
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
     if (proposalType == 0)
     {
         bObj = budget.GetAllProposals();

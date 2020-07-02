@@ -1606,7 +1606,11 @@
          </property>
         </widget>
        </item>
+<<<<<<< HEAD
         <item row="14" column="0" colspan="2">
+=======
+       <item row="14" column="0" colspan="2">
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
         <widget class="QPushButton" name="btn_convert_to_hd_Wallet">
          <property name="minimumSize">
           <size>

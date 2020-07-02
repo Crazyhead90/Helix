@@ -1,7 +1,9 @@
 // Copyright (c) 2011-2013 The Bitcoin Core developers
 // Copyright (c) 2018 The Phore developers
 // Copyright (c) 2018-2019 The Helix developers
-// Distributed under the MIT software license, see the accompanying
+// Copyright (c) 2018 The Curium developers
+// Copyright (c) 2017-2018 The Bulwark Developers
+// Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_QT_PROPOSALRECORD_H
@@ -18,7 +20,11 @@ class CWallet;
 class ProposalRecord
 {
 public:
+<<<<<<< HEAD
         ProposalRecord() :
+=======
+    ProposalRecord() :
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
         hash(""),
         start_epoch(0),
         end_epoch(0),

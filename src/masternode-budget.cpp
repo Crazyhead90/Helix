@@ -925,7 +925,7 @@ CAmount CBudgetManager::GetTotalBudget(int nHeight)
         return 0.81 * COIN * 1440 * 30;
     } else if (nHeight > 2628001 && nHeight <= 58545900) {
         return 0.42 * COIN * 1440 * 30;
-    } else	
+    } else
 		return 0 * COIN * 1440 * 30;
 }
 
@@ -1127,7 +1127,10 @@ void CBudgetManager::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
         mapSeenMasternodeBudgetVotes.insert(make_pair(vote.GetHash(), vote));
         if (!vote.SignatureValid(true)) {
             if (masternodeSync.IsSynced()) {
+<<<<<<< HEAD
             //if (masternodeSync.IsSynced()) Misbehaving(pfrom->GetId(), 20);
+=======
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
                 LogPrintf("CBudgetManager::ProcessMessage() : mvote - signature invalid\n");
                 Misbehaving(pfrom->GetId(), 20);
             }
@@ -1204,7 +1207,7 @@ void CBudgetManager::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
             if (masternodeSync.IsSynced()) {
                 LogPrintf("CBudgetManager::ProcessMessage() : fbvote - signature from masternode %s invalid\n", HexStr(pmn->pubKeyMasternode));
                 Misbehaving(pfrom->GetId(), 20);
-            }				
+            }
             // it could just be a non-synced masternode
             mnodeman.AskForMN(pfrom, vote.vin);
             return;

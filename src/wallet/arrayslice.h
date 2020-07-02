@@ -17,8 +17,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+<<<<<<< HEAD
 #ifndef HELIX_ARRAYSLICE_H
 #define HELIX_ARRAYSLICE_H
+=======
+#ifndef PHORE_ARRAYSLICE_H
+#define PHORE_ARRAYSLICE_H
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
 
 #include <array>
 
@@ -42,4 +47,8 @@ private:
     const Iterable* end_;
 };
 
+<<<<<<< HEAD
 #endif //HELIX_ARRAYSLICE_H
+=======
+#endif //PHORE_ARRAYSLICE_H
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9

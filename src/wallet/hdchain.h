@@ -1,7 +1,12 @@
 // Copyright (c) 2014-2017 The Dash Core developers
 // Distributed under the MIT software license, see the accompanying
+<<<<<<< HEAD
 #ifndef HELIX_HDCHAIN_H
 #define HELIX_HDCHAIN_H
+=======
+#ifndef PHORE_HDCHAIN_H
+#define PHORE_HDCHAIN_H
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
 
 #include "key.h"
 #include "sync.h"
@@ -150,4 +155,8 @@ public:
     std::string GetKeyPath() const;
 };
 
+<<<<<<< HEAD
 #endif // HELIX_HDCHAIN_H
+=======
+#endif // PHORE_HDCHAIN_H
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9

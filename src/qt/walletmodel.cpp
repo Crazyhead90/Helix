@@ -758,7 +758,11 @@ void WalletModel::loadReceiveRequests(std::vector<std::string>& vReceiveRequests
     LOCK(wallet->cs_wallet);
     for (const PAIRTYPE(CTxDestination, CAddressBookData) & item : wallet->mapAddressBook)
         for (const PAIRTYPE(std::string, std::string) & item2 : item.second.destdata)
+<<<<<<< HEAD
            if (item2.first.size() > 2 && item2.first.substr(0, 2) == "rr") // receive request
+=======
+            if (item2.first.size() > 2 && item2.first.substr(0, 2) == "rr") // receive request
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9
                 vReceiveRequests.push_back(item2.second);
 }
 

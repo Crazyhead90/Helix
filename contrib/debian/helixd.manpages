@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 debian/man/helixd.1
 debian/man/helix.conf.5
+=======
+debian/manpages/helixd.1
+debian/manpages/helix.conf.5
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9

@@ -36,6 +36,7 @@
 #include <utility>
 #include <vector>
 
+
 /**
  * Settings
  */
@@ -224,7 +225,11 @@ private:
         bool useIX,
         CAmount nFeePay,
         ParamForCreateTransaction * param);
+<<<<<<< HEAD:src/wallet/wallet.h
     
+=======
+
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9:src/wallet.h
 
     bool SelectCoins(const CAmount& nTargetValue, std::set<std::pair<const CWalletTx*, unsigned int> >& setCoinsRet, CAmount& nValueRet, CoinSelectStrategy coinSelectStrategy, const CCoinControl* coinControl = NULL, AvailableCoinsType coin_type = ALL_COINS, bool useIX = true) const;
     //it was public bool SelectCoins(int64_t nTargetValue, std::set<std::pair<const CWalletTx*,unsigned int> >& setCoinsRet, int64_t& nValueRet, const CCoinControl *coinControl = NULL, AvailableCoinsType coin_type=ALL_COINS, bool useIX = true) const;
@@ -492,7 +497,11 @@ public:
     void ListLockedCoins(std::vector<COutPoint>& vOutpts);
     CAmount GetTotalValue(std::vector<CTxIn> vCoins);
 
+<<<<<<< HEAD:src/wallet/wallet.h
      /**
+=======
+    /**
+>>>>>>> cf2783ef2175bdf3ee6686987d30125c4cc4d5b9:src/wallet.h
      * keystore implementation
      * Generate a new key
      */
